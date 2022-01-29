@@ -2,7 +2,7 @@
     materialized="table"
 )}}
 
-with jaffle_shop.customers as (
+with customers as (
 
     select
         id as customer_id,
@@ -13,7 +13,7 @@ with jaffle_shop.customers as (
 
 ),
 
-jaffle_shop.orders as (
+orders as (
 
     select
         id as order_id,
@@ -25,7 +25,7 @@ jaffle_shop.orders as (
 
 ),
 
-jaffle_shop.customer_orders as (
+customer_orders as (
 
     select
         customer_id,
@@ -34,7 +34,7 @@ jaffle_shop.customer_orders as (
         max(order_date) as most_recent_order_date,
         count(order_id) as number_of_orders
 
-    from jaffle_shop.orders
+    from orders
 
     group by 1
 
@@ -51,7 +51,7 @@ final as (
         customer_orders.most_recent_order_date,
         coalesce(customer_orders.number_of_orders, 0) as number_of_orders
 
-    from jaffle_shop.customers
+    from customers
 
     left join customer_orders using (customer_id)
 
