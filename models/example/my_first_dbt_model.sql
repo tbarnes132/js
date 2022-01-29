@@ -7,6 +7,8 @@
     Try changing "table" to "view" below
 */
 
+# This is an uncommitted change.
+
 {{ config(materialized='table') }}
 
 with source_data as (
