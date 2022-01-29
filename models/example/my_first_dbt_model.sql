@@ -7,7 +7,7 @@
     Try changing "table" to "view" below
 */
 
-# This is an uncommitted change.
+-- This is an uncommitted change.
 
 {{ config(materialized='table') }}
 
@@ -18,6 +18,7 @@ with source_data as (
     select null as id
 
 )
+
 
 select *
 from source_data
